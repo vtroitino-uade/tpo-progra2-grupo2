@@ -53,12 +53,7 @@ mvn clean test
 Si ves `BUILD SUCCESS`, ✅ todo está bien.
 
 ### 🚀 5. Subir tus cambios
-Antes de subir tus cambios, **actualizá tu branch con la última versión de `main`** para evitar conflictos:
-
-```bash
-git pull origin main
-```
-
+Antes de subir tus cambios, **actualizá tu branch con la última versión de `main`** para evitar conflictos.
 Si Git te pide resolver conflictos, hacelo **en tu branch**, nunca en `main`.
 
 Luego, confirmá y subí tus cambios:
@@ -66,6 +61,7 @@ Luego, confirmá y subí tus cambios:
 ```bash
 git add .
 git commit -m "Resuelvo ejercicios asignados"
+git pull origin main
 git push
 ```
 ### 🔄 6. Crear un Pull Request (PR)

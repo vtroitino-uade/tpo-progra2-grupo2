@@ -63,7 +63,7 @@ public class CantidadHojasParesABBTest {
         this.arbol.agregarElem(10);
 
         int resultado = CantidadHojasParesABB.calcular(this.arbol);
-        assertEquals(2, resultado); // hojas pares: 4 y 10
+        assertEquals(3, resultado); // hojas pares: 2, 4 y 10
     }
 
     @Test
@@ -101,6 +101,6 @@ public class CantidadHojasParesABBTest {
         this.arbol.agregarElem(11);
 
         int resultado = CantidadHojasParesABB.calcular(this.arbol);
-        assertEquals(2, resultado); // hojas pares: 4 y 8
+        assertEquals(3, resultado); // hojas pares: 2, 4 y 8
     }
 }

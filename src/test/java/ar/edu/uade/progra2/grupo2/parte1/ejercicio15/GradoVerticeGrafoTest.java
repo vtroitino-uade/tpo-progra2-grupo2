@@ -37,7 +37,7 @@ public class GradoVerticeGrafoTest {
         this.grafo.agregarArista(1, 4, 1);
 
         int resultado = GradoVerticeGrafo.calcular(this.grafo, 1);
-        assertEquals(3, resultado); // 3 salen, 0 llegan
+        assertEquals(3, resultado);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class GradoVerticeGrafoTest {
         this.grafo.agregarArista(4, 1, 1);
 
         int resultado = GradoVerticeGrafo.calcular(this.grafo, 1);
-        assertEquals(-3, resultado); // 0 salen, 3 llegan
+        assertEquals(-3, resultado);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class GradoVerticeGrafoTest {
         this.grafo.agregarArista(5, 1, 1);
 
         int resultado = GradoVerticeGrafo.calcular(this.grafo, 1);
-        assertEquals(0, resultado); // 2 salen, 2 llegan
+        assertEquals(0, resultado);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class GradoVerticeGrafoTest {
         this.grafo.agregarArista(3, 1, 1);
 
         int resultado = GradoVerticeGrafo.calcular(this.grafo, 1);
-        assertEquals(0, resultado); // 1 sale, 1 llega
+        assertEquals(0, resultado);
     }
 
     @Test
@@ -79,11 +79,11 @@ public class GradoVerticeGrafoTest {
         this.grafo.agregarArista(4, 5, 1);
         this.grafo.agregarArista(5, 1, 1);
 
-        assertEquals(1, GradoVerticeGrafo.calcular(this.grafo, 1));  // 2 salen, 1 llega
-        assertEquals(0, GradoVerticeGrafo.calcular(this.grafo, 2));  // 1 sale, 1 llega
-        assertEquals(1, GradoVerticeGrafo.calcular(this.grafo, 3));  // 2 salen, 1 llega
-        assertEquals(0, GradoVerticeGrafo.calcular(this.grafo, 4));  // 1 sale, 1 llega
-        assertEquals(-1, GradoVerticeGrafo.calcular(this.grafo, 5)); // 1 sale, 2 llegan
+        assertEquals(1, GradoVerticeGrafo.calcular(this.grafo, 1));
+        assertEquals(0, GradoVerticeGrafo.calcular(this.grafo, 2));
+        assertEquals(-1, GradoVerticeGrafo.calcular(this.grafo, 3));
+        assertEquals(0, GradoVerticeGrafo.calcular(this.grafo, 4));
+        assertEquals(0, GradoVerticeGrafo.calcular(this.grafo, 5));
     }
 
     @Test

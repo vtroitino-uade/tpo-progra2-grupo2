@@ -31,9 +31,9 @@ public class VerticesPuenteGrafoTest {
     @Test
     void testSinPuentes() {
         this.grafo.agregarArista(1, 2, 1);
+        this.grafo.agregarArista(2, 4, 1);
         this.grafo.agregarArista(2, 3, 1);
-        this.grafo.agregarArista(3, 4, 1);
-        this.grafo.agregarArista(4, 5, 1);
+        this.grafo.agregarArista(3, 5, 1);
 
         ConjuntoTDA resultado = VerticesPuenteGrafo.obtener(this.grafo, 1, 5);
 
