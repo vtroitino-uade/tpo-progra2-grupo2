@@ -1,5 +1,6 @@
 package ar.edu.uade.progra2.grupo2.parte1.ejercicio10;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,13 +31,22 @@ public class FrecuenciaElementosPilaTest {
         this.pila.apilar(4);
 
         DiccionarioSimpleTDA resultado = FrecuenciaElementosPila.obtener(this.pila);
-
         ConjuntoTDA claves = resultado.claves();
-        assertEquals(4, this.contarElementos(claves));
-        assertEquals(1, resultado.recuperar(1));
-        assertEquals(1, resultado.recuperar(2));
-        assertEquals(1, resultado.recuperar(3));
-        assertEquals(1, resultado.recuperar(4));
+
+        assertAll("Verificar frecuencias correctas sin repetidos",
+            () -> assertEquals(4, this.contarElementos(claves), "Debe haber 4 claves distintas"),
+            () -> assertEquals(1, resultado.recuperar(1), "La frecuencia de 1 debe ser 1"),
+            () -> assertEquals(1, resultado.recuperar(2), "La frecuencia de 2 debe ser 1"),
+            () -> assertEquals(1, resultado.recuperar(3), "La frecuencia de 3 debe ser 1"),
+            () -> assertEquals(1, resultado.recuperar(4), "La frecuencia de 4 debe ser 1")
+        );
+
+        assertAll("Verificar que la pila no fue modificada",
+            () -> assertEquals(4, this.pila.tope(), "El tope original debe seguir siendo 4"),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 4, debe ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 3, debe ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 2, debe ser 1"); }
+        );
     }
 
     @Test
@@ -50,10 +60,21 @@ public class FrecuenciaElementosPilaTest {
 
         DiccionarioSimpleTDA resultado = FrecuenciaElementosPila.obtener(this.pila);
 
-        assertEquals(3, resultado.recuperar(1));
-        assertEquals(2, resultado.recuperar(2));
-        assertEquals(1, resultado.recuperar(3));
-        assertEquals(3, this.contarElementos(resultado.claves()));
+        assertAll("Verificar frecuencias correctas con repetidos",
+            () -> assertEquals(3, resultado.recuperar(1), "La frecuencia de 1 debe ser 3"),
+            () -> assertEquals(2, resultado.recuperar(2), "La frecuencia de 2 debe ser 2"),
+            () -> assertEquals(1, resultado.recuperar(3), "La frecuencia de 3 debe ser 1"),
+            () -> assertEquals(3, this.contarElementos(resultado.claves()), "Debe haber 3 claves distintas")
+        );
+
+        assertAll("Verificar que la pila no fue modificada",
+            () -> assertEquals(1, this.pila.tope(), "El tope original debe seguir siendo 1"),
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 1, debe ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 2, debe ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 3, debe ser 1"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 1, debe ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 2, debe ser 1"); }
+        );
     }
 
     @Test
@@ -65,8 +86,17 @@ public class FrecuenciaElementosPilaTest {
 
         DiccionarioSimpleTDA resultado = FrecuenciaElementosPila.obtener(this.pila);
 
-        assertEquals(1, this.contarElementos(resultado.claves()));
-        assertEquals(4, resultado.recuperar(5));
+        assertAll("Verificar frecuencia cuando todos son iguales",
+            () -> assertEquals(1, this.contarElementos(resultado.claves()), "Debe haber solo 1 clave"),
+            () -> assertEquals(4, resultado.recuperar(5), "La frecuencia de 5 debe ser 4")
+        );
+
+        assertAll("Verificar que la pila no fue modificada",
+            () -> assertEquals(5, this.pila.tope(), "El tope original debe seguir siendo 5"),
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, debe seguir siendo 5"); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, debe seguir siendo 5"); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, debe seguir siendo 5"); }
+        );
     }
 
     @Test
@@ -75,14 +105,19 @@ public class FrecuenciaElementosPilaTest {
 
         DiccionarioSimpleTDA resultado = FrecuenciaElementosPila.obtener(this.pila);
 
-        assertEquals(1, this.contarElementos(resultado.claves()));
-        assertEquals(1, resultado.recuperar(9));
+        assertAll("Verificar frecuencia con un solo elemento",
+            () -> assertEquals(1, this.contarElementos(resultado.claves()), "Debe haber solo 1 clave"),
+            () -> assertEquals(1, resultado.recuperar(9), "La frecuencia de 9 debe ser 1")
+        );
+
+        assertEquals(9, this.pila.tope(), "El único elemento de la pila debe seguir siendo 9");
     }
 
     @Test
     void testPilaVacia() {
         DiccionarioSimpleTDA resultado = FrecuenciaElementosPila.obtener(this.pila);
-        assertTrue(resultado.claves().conjuntoVacio());
+        assertTrue(resultado.claves().conjuntoVacio(), "Si la pila está vacía, no debe haber claves");
+        assertTrue(this.pila.pilaVacia(), "La pila debe seguir vacía después del cálculo");
     }
 
     private int contarElementos(ConjuntoTDA conjunto) {

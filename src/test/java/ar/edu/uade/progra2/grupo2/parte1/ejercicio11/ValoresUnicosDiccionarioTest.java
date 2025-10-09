@@ -2,6 +2,7 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio11;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,9 @@ public class ValoresUnicosDiccionarioTest {
     @Test
     void testDiccionarioVacio() {
         ColaTDA resultado = ValoresUnicosDiccionario.obtener(this.diccionario);
-        assertEquals(0, this.contarElementos(resultado));
+
+        assertEquals(0, this.contarElementos(resultado),
+            "Un diccionario vacío no debe generar ningún valor único");
     }
 
     @Test
@@ -35,10 +38,12 @@ public class ValoresUnicosDiccionarioTest {
 
         ColaTDA resultado = ValoresUnicosDiccionario.obtener(this.diccionario);
 
-        assertEquals(3, this.contarElementos(resultado));
-        assertTrue(this.colaContiene(resultado, 10));
-        assertTrue(this.colaContiene(resultado, 20));
-        assertTrue(this.colaContiene(resultado, 30));
+        assertAll("Verificar valores únicos sin repetidos",
+            () -> assertEquals(3, this.contarElementos(resultado), "La cola debe tener 3 valores únicos"),
+            () -> assertTrue(this.colaContiene(resultado, 10), "Debe contener el valor 10"),
+            () -> assertTrue(this.colaContiene(resultado, 20), "Debe contener el valor 20"),
+            () -> assertTrue(this.colaContiene(resultado, 30), "Debe contener el valor 30")
+        );
     }
 
     @Test
@@ -51,10 +56,12 @@ public class ValoresUnicosDiccionarioTest {
 
         ColaTDA resultado = ValoresUnicosDiccionario.obtener(this.diccionario);
 
-        assertEquals(3, this.contarElementos(resultado));
-        assertTrue(this.colaContiene(resultado, 10));
-        assertTrue(this.colaContiene(resultado, 20));
-        assertTrue(this.colaContiene(resultado, 30));
+        assertAll("Verificar valores únicos cuando hay repetidos entre claves",
+            () -> assertEquals(3, this.contarElementos(resultado), "La cola debe tener 3 valores únicos (10,20,30)"),
+            () -> assertTrue(this.colaContiene(resultado, 10), "Debe contener el valor 10"),
+            () -> assertTrue(this.colaContiene(resultado, 20), "Debe contener el valor 20"),
+            () -> assertTrue(this.colaContiene(resultado, 30), "Debe contener el valor 30")
+        );
     }
 
     @Test
@@ -65,8 +72,10 @@ public class ValoresUnicosDiccionarioTest {
 
         ColaTDA resultado = ValoresUnicosDiccionario.obtener(this.diccionario);
 
-        assertEquals(1, this.contarElementos(resultado));
-        assertTrue(this.colaContiene(resultado, 5));
+        assertAll("Verificar cuando todos los valores están repetidos",
+            () -> assertEquals(1, this.contarElementos(resultado), "La cola debe tener solo 1 valor único (5)"),
+            () -> assertTrue(this.colaContiene(resultado, 5), "Debe contener el valor 5")
+        );
     }
 
     @Test
@@ -79,15 +88,15 @@ public class ValoresUnicosDiccionarioTest {
 
         ColaTDA resultado = ValoresUnicosDiccionario.obtener(this.diccionario);
 
-        assertEquals(5, this.contarElementos(resultado));
-        assertTrue(this.colaContiene(resultado, 10));
-        assertTrue(this.colaContiene(resultado, 20));
-        assertTrue(this.colaContiene(resultado, 30));
-        assertTrue(this.colaContiene(resultado, 40));
-        assertTrue(this.colaContiene(resultado, 50));
+        assertAll("Verificar cuando las claves tienen múltiples valores únicos",
+            () -> assertEquals(5, this.contarElementos(resultado), "La cola debe tener 5 valores únicos"),
+            () -> assertTrue(this.colaContiene(resultado, 10), "Debe contener el valor 10"),
+            () -> assertTrue(this.colaContiene(resultado, 20), "Debe contener el valor 20"),
+            () -> assertTrue(this.colaContiene(resultado, 30), "Debe contener el valor 30"),
+            () -> assertTrue(this.colaContiene(resultado, 40), "Debe contener el valor 40"),
+            () -> assertTrue(this.colaContiene(resultado, 50), "Debe contener el valor 50")
+        );
     }
-
-    // --- Helpers ---
 
     private int contarElementos(ColaTDA cola) {
         ColaTDA aux = new Cola();
