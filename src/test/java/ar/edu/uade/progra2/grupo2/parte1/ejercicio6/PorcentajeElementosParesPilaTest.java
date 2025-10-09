@@ -49,11 +49,11 @@ public class PorcentajeElementosParesPilaTest {
 
         assertEquals(100.0f, resultado, 0.01);
 
-        assertEquals(6, this.pila.tope());
-        this.pila.desapilar();
-        assertEquals(4, this.pila.tope());
-        this.pila.desapilar();
-        assertEquals(2, this.pila.tope());
+        assertAll(
+            () -> assertEquals(6, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(4, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); }
+        );
     }
 
     @Test
