@@ -6,27 +6,55 @@ import tda.GrafoTDA;
 
 public class VerticesPuenteGrafo {
 
-    public static ConjuntoTDA obtener(GrafoTDA grafo, int origen, int destino) {        
-        ConjuntoTDA puentes = new Conjunto();
-        puentes.inicializarConjunto();
+    /**
+     * 
+     * <p><b>Estrategia:</b></p>
+     * La estrategia utilizada es iterativa y selectiva:
+     * Obtiene el conjunto de vértices que funcionan como "puentes" entre un vértice
+     * de origen y uno de destino, es decir, aquellos vértices que poseen una arista
+     * entrante desde el origen y una arista saliente hacia el destino.
+     *
+     * <ul>
+     *   <li>Se inicializa un conjunto auxiliar vacío para almacenar los vértices puente.</li>
+     *   <li>Se obtiene el conjunto de vértices del grafo y se verifica que tanto el origen
+     *       como el destino pertenezcan a él.</li>
+     *   <li>Se eliminan origen y destino del conjunto auxiliar para no considerarlos
+     *       como posibles puentes.</li>
+     *   <li>Se recorre cada vértice restante y se verifica si existe una arista
+     *       desde el origen hacia ese vértice y otra desde el vértice hacia el destino.</li>
+     *   <li>Si ambas condiciones se cumplen, el vértice se agrega al conjunto de puentes.</li>
+     * </ul>
+     *
+     * <p>La estructura original del grafo no se modifica en ningún momento; solo se
+     * trabaja sobre conjuntos auxiliares obtenidos a partir de él.</p>
+     *
+     *
+     * @param grafo   grafo sobre el cual se buscan los vértices puente
+     * @param origen  vértice de origen
+     * @param destino vértice de destino
+     * @return conjunto de vértices puente entre origen y destino
+     */
+    public static ConjuntoTDA obtener(GrafoTDA grafo, int origen, int destino) {
+        ConjuntoTDA puentes = new Conjunto(); // C
+        puentes.inicializarConjunto(); // C
 
-        ConjuntoTDA vertices = grafo.vertices();
-        if (!vertices.pertenece(origen) || !vertices.pertenece(destino)) {
-            return puentes;
+        ConjuntoTDA vertices = grafo.vertices(); // C
+        if (!vertices.pertenece(origen) || !vertices.pertenece(destino)) { // C
+            return puentes; // C
         }
 
-        vertices.sacar(origen);
-        vertices.sacar(destino);
+        vertices.sacar(origen); // L
+        vertices.sacar(destino); // L
 
-        while (!vertices.conjuntoVacio()) {
-            int puente = vertices.elegir();
-            if (grafo.existeArista(origen, puente) && grafo.existeArista(puente, destino)) {
-                puentes.agregar(puente);
+        while (!vertices.conjuntoVacio()) { // L
+            int puente = vertices.elegir(); // C
+            if (grafo.existeArista(origen, puente) && grafo.existeArista(puente, destino)) { // C
+                puentes.agregar(puente); // C
             }
-            vertices.sacar(puente);
-        }
+            vertices.sacar(puente); // L
+        } // P
 
-        return puentes;
-    }
+        return puentes; // C
+    } // P
 
 }
