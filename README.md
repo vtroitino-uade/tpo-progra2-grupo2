@@ -64,6 +64,7 @@ git commit -m "Resuelvo ejercicios asignados"
 git pull origin main
 git push
 ```
+
 ### 🔄 6. Crear un Pull Request (PR)
 Desde GitHub:  
 1. **Compare & pull request**  
