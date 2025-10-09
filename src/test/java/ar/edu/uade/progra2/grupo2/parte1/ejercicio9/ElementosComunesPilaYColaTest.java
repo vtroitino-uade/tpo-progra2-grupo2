@@ -2,6 +2,7 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio9;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import imple.Pila;
 import imple.Cola;
-import imple.Conjunto;
 import tda.PilaTDA;
 import tda.ColaTDA;
 import tda.ConjuntoTDA;
@@ -42,10 +42,26 @@ public class ElementosComunesPilaYColaTest {
 
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
 
-        assertTrue(resultado.pertenece(3));
-        assertTrue(resultado.pertenece(4));
-        assertFalse(resultado.pertenece(1));
-        assertFalse(resultado.pertenece(5));
+        assertAll("Verificar elementos comunes entre pila y cola",
+            () -> assertTrue(resultado.pertenece(3), "El conjunto debería contener el 3"),
+            () -> assertTrue(resultado.pertenece(4), "El conjunto debería contener el 4"),
+            () -> assertFalse(resultado.pertenece(1), "El conjunto no debería contener el 1"),
+            () -> assertFalse(resultado.pertenece(5), "El conjunto no debería contener el 5")
+        );
+
+        assertAll("La pila original debe conservar su orden",
+            () -> assertEquals(4, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
+
+        assertAll("La cola original debe conservar su orden",
+            () -> assertEquals(3, this.cola.primero()),
+            () -> { this.cola.desacolar(); assertEquals(4, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(5, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(6, this.cola.primero()); }
+        );
     }
 
     @Test
@@ -60,7 +76,19 @@ public class ElementosComunesPilaYColaTest {
 
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
 
-        assertTrue(resultado.conjuntoVacio());
+        assertTrue(resultado.conjuntoVacio(), "Si no hay elementos en común, el conjunto debe estar vacío");
+
+        assertAll("La pila original debe conservar su orden",
+            () -> assertEquals(3, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
+
+        assertAll("La cola original debe conservar su orden",
+            () -> assertEquals(4, this.cola.primero()),
+            () -> { this.cola.desacolar(); assertEquals(5, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(6, this.cola.primero()); }
+        );
     }
 
     @Test
@@ -80,11 +108,29 @@ public class ElementosComunesPilaYColaTest {
 
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
 
-        assertTrue(resultado.pertenece(2));
-        assertTrue(resultado.pertenece(3));
-        assertFalse(resultado.pertenece(1));
-        assertFalse(resultado.pertenece(4));
-        assertEquals(2, this.contarElementos(resultado));
+        assertAll("Verificar elementos comunes cuando hay duplicados",
+            () -> assertTrue(resultado.pertenece(2), "El conjunto debería contener el 2"),
+            () -> assertTrue(resultado.pertenece(3), "El conjunto debería contener el 3"),
+            () -> assertFalse(resultado.pertenece(1), "El conjunto no debería contener el 1"),
+            () -> assertFalse(resultado.pertenece(4), "El conjunto no debería contener el 4")
+        );
+
+        assertAll("La pila original debe conservar su orden",
+            () -> assertEquals(4, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); }
+        );
+
+        assertAll("La cola original debe conservar su orden",
+            () -> assertEquals(1, this.cola.primero()),
+            () -> { this.cola.desacolar(); assertEquals(2, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(2, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(3, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(3, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(5, this.cola.primero()); }
+        );
     }
 
     @Test
@@ -95,7 +141,15 @@ public class ElementosComunesPilaYColaTest {
 
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
 
-        assertTrue(resultado.conjuntoVacio());
+        assertTrue(resultado.conjuntoVacio(), "Si la pila está vacía, no puede haber elementos en común");
+
+        assertTrue(this.pila.pilaVacia(), "La pila original debe conservarse");
+
+        assertAll("La cola original debe conservar su orden",
+            () -> assertEquals(1, this.cola.primero()),
+            () -> { this.cola.desacolar(); assertEquals(2, this.cola.primero()); },
+            () -> { this.cola.desacolar(); assertEquals(3, this.cola.primero()); }
+        );
     }
 
     @Test
@@ -106,33 +160,23 @@ public class ElementosComunesPilaYColaTest {
 
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
 
-        assertTrue(resultado.conjuntoVacio());
+        assertTrue(resultado.conjuntoVacio(), "Si la cola está vacía, no puede haber elementos en común");
+
+        assertAll("La pila original debe conservar su orden",
+            () -> assertEquals(3, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
+
+        assertTrue(this.pila.pilaVacia(), "La cola original debe conservarse");
     }
 
     @Test
     void testAmbasVacias() {
         ConjuntoTDA resultado = ElementosComunesPilaYCola.obtener(this.pila, this.cola);
-        assertTrue(resultado.conjuntoVacio());
+        assertTrue(resultado.conjuntoVacio(), "Si pila y cola están vacías, el conjunto debe estar vacío");
+        assertTrue(this.pila.pilaVacia(), "La pila original debe conservarse");
+        assertTrue(this.pila.pilaVacia(), "La cola original debe conservarse");
     }
 
-    private int contarElementos(ConjuntoTDA conjunto) {
-        ConjuntoTDA aux = new Conjunto();
-        aux.inicializarConjunto();
-        int contador = 0;
-
-        while (!conjunto.conjuntoVacio()) {
-            int elem = conjunto.elegir();
-            conjunto.sacar(elem);
-            aux.agregar(elem);
-            contador++;
-        }
-
-        while (!aux.conjuntoVacio()) {
-            int elem = aux.elegir();
-            aux.sacar(elem);
-            conjunto.agregar(elem);
-        }
-
-        return contador;
-    }
 }
