@@ -2,13 +2,13 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio7;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import imple.Pila;
-import imple.Conjunto;
 import tda.PilaTDA;
 import tda.ConjuntoTDA;
 
@@ -18,84 +18,88 @@ public class ElementosRepetidosPilaTest {
 
     @BeforeEach
     void setUp() {
-        pila = new Pila();
-        pila.inicializarPila();
+        this.pila = new Pila();
+        this.pila.inicializarPila();
     }
 
     @Test
     void testSinElementosRepetidos() {
-        pila.apilar(1);
-        pila.apilar(2);
-        pila.apilar(3);
-        pila.apilar(4);
+        this.pila.apilar(1);
+        this.pila.apilar(2);
+        this.pila.apilar(3);
+        this.pila.apilar(4);
 
-        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(pila);
+        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
         assertTrue(resultado.conjuntoVacio());
+
+        assertAll(
+            () -> assertEquals(4, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
     }
 
     @Test
     void testConElementosRepetidos() {
-        pila.apilar(1);
-        pila.apilar(2);
-        pila.apilar(3);
-        pila.apilar(2);
-        pila.apilar(1);
+        this.pila.apilar(1);
+        this.pila.apilar(2);
+        this.pila.apilar(3);
+        this.pila.apilar(2);
+        this.pila.apilar(1);
 
-        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(pila);
+        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
         assertTrue(resultado.pertenece(1));
         assertTrue(resultado.pertenece(2));
         assertFalse(resultado.pertenece(3));
+
+        assertAll(
+            () -> assertEquals(1, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
     }
 
     @Test
     void testTodosRepetidos() {
-        pila.apilar(5);
-        pila.apilar(5);
-        pila.apilar(5);
-        pila.apilar(5);
+        this.pila.apilar(5);
+        this.pila.apilar(5);
+        this.pila.apilar(5);
+        this.pila.apilar(5);
 
-        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(pila);
+        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
         assertTrue(resultado.pertenece(5));
-        assertEquals(1, this.contarElementos(resultado));
+
+        assertAll(
+            () -> assertEquals(5, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); }
+        );
     }
 
     @Test
     void testPilaConUnSoloElemento() {
-        pila.apilar(10);
+        this.pila.apilar(10);
 
-        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(pila);
+        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
         assertTrue(resultado.conjuntoVacio());
+
+        assertEquals(10, this.pila.tope());
     }
 
     @Test
     void testPilaVacia() {
-        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(pila);
+        ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
         assertTrue(resultado.conjuntoVacio());
+        assertTrue(this.pila.pilaVacia());
     }
 
-    private int contarElementos(ConjuntoTDA conjunto) {
-        ConjuntoTDA aux = new Conjunto();
-        aux.inicializarConjunto();
-        int contador = 0;
-
-        while (!conjunto.conjuntoVacio()) {
-            int elem = conjunto.elegir();
-            conjunto.sacar(elem);
-            aux.agregar(elem);
-            contador++;
-        }
-
-        while (!aux.conjuntoVacio()) {
-            int elem = aux.elegir();
-            aux.sacar(elem);
-            conjunto.agregar(elem);
-        }
-
-        return contador;
-    }
 }

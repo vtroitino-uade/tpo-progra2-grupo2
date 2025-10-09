@@ -1,6 +1,9 @@
 package ar.edu.uade.progra2.grupo2.parte1.ejercicio6;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,41 +16,67 @@ public class PorcentajeElementosParesPilaTest {
 
     @BeforeEach
     void setUp() {
-        pila = new Pila();
-        pila.inicializarPila();
+        this.pila = new Pila();
+        this.pila.inicializarPila();
     }
 
     @Test
     void testMitadPares() {
-        pila.apilar(1);
-        pila.apilar(2);
-        pila.apilar(3);
-        pila.apilar(4);
-        float resultado = PorcentajeElementosParesPila.calcular(pila);
+        this.pila.apilar(1);
+        this.pila.apilar(2);
+        this.pila.apilar(3);
+        this.pila.apilar(4);
+
+        float resultado = PorcentajeElementosParesPila.calcular(this.pila);
+
         assertEquals(50.0f, resultado, 0.01);
+
+        assertAll(
+            () -> assertEquals(4, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
     }
 
     @Test
     void testTodosPares() {
-        pila.apilar(2);
-        pila.apilar(4);
-        pila.apilar(6);
-        float resultado = PorcentajeElementosParesPila.calcular(pila);
+        this.pila.apilar(2);
+        this.pila.apilar(4);
+        this.pila.apilar(6);
+
+        float resultado = PorcentajeElementosParesPila.calcular(this.pila);
+
         assertEquals(100.0f, resultado, 0.01);
+
+        assertEquals(6, this.pila.tope());
+        this.pila.desapilar();
+        assertEquals(4, this.pila.tope());
+        this.pila.desapilar();
+        assertEquals(2, this.pila.tope());
     }
 
     @Test
     void testNingunoPar() {
-        pila.apilar(1);
-        pila.apilar(3);
-        pila.apilar(5);
-        float resultado = PorcentajeElementosParesPila.calcular(pila);
+        this.pila.apilar(1);
+        this.pila.apilar(3);
+        this.pila.apilar(5);
+
+        float resultado = PorcentajeElementosParesPila.calcular(this.pila);
+
         assertEquals(0.0f, resultado, 0.01);
+
+        assertAll(
+            () -> assertEquals(5, this.pila.tope()),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        );
     }
 
     @Test
     void testPilaVacia() {
-        float resultado = PorcentajeElementosParesPila.calcular(pila);
+        float resultado = PorcentajeElementosParesPila.calcular(this.pila);
         assertEquals(0.0f, resultado, 0.01);
+        assertTrue(this.pila.pilaVacia());
     }
 }
