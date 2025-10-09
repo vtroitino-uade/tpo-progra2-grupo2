@@ -29,13 +29,13 @@ public class PorcentajeElementosParesPilaTest {
 
         float resultado = PorcentajeElementosParesPila.calcular(this.pila);
 
-        assertEquals(50.0f, resultado, 0.01);
+        assertEquals(50.0f, resultado, 0.01, "El porcentaje debe ser 50% cuando la mitad de los elementos son pares");
 
-        assertAll(
-            () -> assertEquals(4, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original después del cálculo",
+            () -> assertEquals(4, this.pila.tope(), "El primer elemento del tope debería ser 4"),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 4, el tope debería ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 3, el tope debería ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 2, el tope debería ser 1"); }
         );
     }
 
@@ -47,12 +47,12 @@ public class PorcentajeElementosParesPilaTest {
 
         float resultado = PorcentajeElementosParesPila.calcular(this.pila);
 
-        assertEquals(100.0f, resultado, 0.01);
+        assertEquals(100.0f, resultado, 0.01, "El porcentaje debe ser 100% cuando todos los elementos son pares");
 
-        assertAll(
-            () -> assertEquals(6, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(4, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original después del cálculo",
+            () -> assertEquals(6, this.pila.tope(), "El primer elemento del tope debería ser 6"),
+            () -> { this.pila.desapilar(); assertEquals(4, this.pila.tope(), "Después de desapilar 6, el tope debería ser 4"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 4, el tope debería ser 2"); }
         );
     }
 
@@ -64,19 +64,20 @@ public class PorcentajeElementosParesPilaTest {
 
         float resultado = PorcentajeElementosParesPila.calcular(this.pila);
 
-        assertEquals(0.0f, resultado, 0.01);
+        assertEquals(0.0f, resultado, 0.01, "El porcentaje debe ser 0% cuando no hay elementos pares");
 
-        assertAll(
-            () -> assertEquals(5, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original después del cálculo",
+            () -> assertEquals(5, this.pila.tope(), "El primer elemento del tope debería ser 5"),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 5, el tope debería ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 3, el tope debería ser 1"); }
         );
     }
 
     @Test
     void testPilaVacia() {
         float resultado = PorcentajeElementosParesPila.calcular(this.pila);
-        assertEquals(0.0f, resultado, 0.01);
-        assertTrue(this.pila.pilaVacia());
+
+        assertEquals(0.0f, resultado, 0.01, "El porcentaje debe ser 0% cuando la pila está vacía");
+        assertTrue(this.pila.pilaVacia(), "La pila debe seguir vacía después de calcular");
     }
 }

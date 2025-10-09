@@ -31,13 +31,13 @@ public class ElementosRepetidosPilaTest {
 
         ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
-        assertTrue(resultado.conjuntoVacio());
+        assertTrue(resultado.conjuntoVacio(), "No debería haber elementos repetidos");
 
-        assertAll(
-            () -> assertEquals(4, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original",
+            () -> assertEquals(4, this.pila.tope(), "El primer elemento del tope debería ser 4"),
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 4, el tope debería ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 3, el tope debería ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 2, el tope debería ser 1"); }
         );
     }
 
@@ -51,16 +51,16 @@ public class ElementosRepetidosPilaTest {
 
         ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
-        assertTrue(resultado.pertenece(1));
-        assertTrue(resultado.pertenece(2));
-        assertFalse(resultado.pertenece(3));
+        assertTrue(resultado.pertenece(1), "El conjunto de repetidos debería contener 1");
+        assertTrue(resultado.pertenece(2), "El conjunto de repetidos debería contener 2");
+        assertFalse(resultado.pertenece(3), "El conjunto de repetidos no debería contener 3");
 
-        assertAll(
-            () -> assertEquals(1, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original",
+            () -> assertEquals(1, this.pila.tope(), "El primer elemento del tope debería ser 1"),
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 1, el tope debería ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(3, this.pila.tope(), "Después de desapilar 2, el tope debería ser 3"); },
+            () -> { this.pila.desapilar(); assertEquals(2, this.pila.tope(), "Después de desapilar 3, el tope debería ser 2"); },
+            () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope(), "Después de desapilar 2, el tope debería ser 1"); }
         );
     }
 
@@ -73,13 +73,13 @@ public class ElementosRepetidosPilaTest {
 
         ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
-        assertTrue(resultado.pertenece(5));
+        assertTrue(resultado.pertenece(5), "El conjunto de repetidos debería contener 5");
 
-        assertAll(
-            () -> assertEquals(5, this.pila.tope()),
-            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); },
-            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope()); }
+        assertAll("La pila debe conservar su orden original",
+            () -> assertEquals(5, this.pila.tope(), "El primer elemento del tope debería ser 5"),
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, el tope debería seguir siendo 5"); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, el tope debería seguir siendo 5"); },
+            () -> { this.pila.desapilar(); assertEquals(5, this.pila.tope(), "Después de desapilar 5, el tope debería seguir siendo 5"); }
         );
     }
 
@@ -89,17 +89,16 @@ public class ElementosRepetidosPilaTest {
 
         ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
-        assertTrue(resultado.conjuntoVacio());
-
-        assertEquals(10, this.pila.tope());
+        assertTrue(resultado.conjuntoVacio(), "No debería haber repetidos con un solo elemento");
+        assertEquals(10, this.pila.tope(), "El único elemento de la pila debería ser 10");
     }
 
     @Test
     void testPilaVacia() {
         ConjuntoTDA resultado = ElementosRepetidosPila.obtener(this.pila);
 
-        assertTrue(resultado.conjuntoVacio());
-        assertTrue(this.pila.pilaVacia());
+        assertTrue(resultado.conjuntoVacio(), "La pila vacía no debería tener elementos repetidos");
+        assertTrue(this.pila.pilaVacia(), "La pila debe permanecer vacía después del cálculo");
     }
 
 }
