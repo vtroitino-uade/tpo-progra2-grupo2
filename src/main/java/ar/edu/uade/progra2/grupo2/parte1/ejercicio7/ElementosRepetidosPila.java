@@ -1,17 +1,17 @@
 package ar.edu.uade.progra2.grupo2.parte1.ejercicio7;
 
-import imple.PilaLD;
-import imple.ConjuntoLD;
+import imple.Pila;
+import imple.Conjunto;
 import tda.PilaTDA;
 import tda.ConjuntoTDA;
 
 public class ElementosRepetidosPila {
 
     public ConjuntoTDA elementosRepetidos(PilaTDA pila) {
-        PilaTDA aux1 = new PilaLD();
-        PilaTDA aux2 = new PilaLD();
-        ConjuntoTDA repetidos = new ConjuntoLD();
-        ConjuntoTDA vistos = new ConjuntoLD();
+        PilaTDA aux1 = new Pila();
+        PilaTDA aux2 = new Pila();
+        ConjuntoTDA repetidos = new Conjunto();
+        ConjuntoTDA vistos = new Conjunto();
 
         aux1.inicializarPila();
         aux2.inicializarPila();
