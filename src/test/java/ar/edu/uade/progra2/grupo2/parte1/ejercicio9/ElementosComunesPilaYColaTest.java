@@ -168,7 +168,7 @@ public class ElementosComunesPilaYColaTest {
             () -> { this.pila.desapilar(); assertEquals(1, this.pila.tope()); }
         );
 
-        assertTrue(this.pila.pilaVacia(), "La cola original debe conservarse");
+        assertTrue(this.cola.colaVacia(), "La cola original debe conservarse");
     }
 
     @Test
