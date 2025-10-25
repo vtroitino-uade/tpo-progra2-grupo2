@@ -7,14 +7,12 @@ import tda.ConjuntoTDA;
 
 public class ElementosRepetidosPila {
 
-    public ConjuntoTDA elementosRepetidos(PilaTDA pila) {
-        PilaTDA aux1 = new Pila();
-        PilaTDA aux2 = new Pila();
+    public static ConjuntoTDA obtener(PilaTDA pila) {
+        PilaTDA aux = new Pila();
         ConjuntoTDA repetidos = new Conjunto();
         ConjuntoTDA vistos = new Conjunto();
 
-        aux1.inicializarPila();
-        aux2.inicializarPila();
+        aux.inicializarPila();
         repetidos.inicializarConjunto();
         vistos.inicializarConjunto();
 
@@ -22,26 +20,20 @@ public class ElementosRepetidosPila {
         while(!pila.pilaVacia()) {
             int valor = pila.tope();
             pila.desapilar();
-            aux1.apilar(valor);
+            aux.apilar(valor);
         }
 
-        // Recorro los elementos
-        while(!aux1.pilaVacia()) {
-            int actual = aux1.tope();
-            aux1.desapilar();
-            aux2.apilar(actual);
+        // Recorro los elementos y restauro la pila original
+        while(!aux.pilaVacia()) {
+            int actual = aux.tope();
+            aux.desapilar();
+            pila.apilar(actual);
 
             if(vistos.pertenece(actual)) {
                 repetidos.agregar(actual);
             } else {
                 vistos.agregar(actual);
             }
-        }
-
-        // Restaura la pila original
-        while(!aux2.pilaVacia()) {
-            pila.apilar(aux2.tope());
-            aux2.desapilar();
         }
 
         return repetidos;
