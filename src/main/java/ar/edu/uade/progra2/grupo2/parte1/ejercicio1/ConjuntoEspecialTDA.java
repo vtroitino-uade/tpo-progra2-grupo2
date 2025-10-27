@@ -5,6 +5,11 @@ public interface ConjuntoEspecialTDA {
     public class Respuesta { 
         public boolean error; 
         public int rta; 
+
+        public Respuesta (boolean error, int valor){
+            this.error = error;
+            this.rta = valor;
+        }
     }
 
     public void inicializarConjunto(); //Inicializa el conjunto. 
