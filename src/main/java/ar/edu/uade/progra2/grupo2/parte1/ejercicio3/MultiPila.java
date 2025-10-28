@@ -3,7 +3,7 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio3;
 import imple.Pila;
 import tda.PilaTDA;
 
-public class MultiPila implements MultiPilaTDA {
+public class MultiPila implements MultipilaTDA {
 
     private Nodo tope;
 
