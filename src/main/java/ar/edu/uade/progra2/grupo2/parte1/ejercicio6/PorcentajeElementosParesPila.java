@@ -7,37 +7,37 @@ public class PorcentajeElementosParesPila {
 
     public static float calcular(PilaTDA pila) {
         // pila auxiliar para no modificar la original
-        PilaTDA aux = new Pila();
-        aux.inicializarPila();
+        PilaTDA aux = new Pila(); // C
+        aux.inicializarPila(); // C
 
-        int total = 0;
-        int pares = 0;
+        int total = 0; // C
+        int pares = 0; // C
 
         // recorro la pila original
-        while (!pila.pilaVacia()) {
-            int valor = pila.tope();
-            pila.desapilar();
-            total++;
+        while (!pila.pilaVacia()) { // L
+            int valor = pila.tope(); // C
+            pila.desapilar(); // C
+            total++; // C
 
-            if (valor % 2 == 0) {
-                pares++;
+            if (valor % 2 == 0) { // C
+                pares++; // C
             }
 
-            aux.apilar(valor);
+            aux.apilar(valor); // C
         }
 
         // restauro la pila original
-        while (!aux.pilaVacia()) {
-            pila.apilar(aux.tope());
-            aux.desapilar();
+        while (!aux.pilaVacia()) { // L
+            pila.apilar(aux.tope()); // C
+            aux.desapilar(); // C
         }
 
         // si la pila está vacía devuelvo 0
-        if (total == 0) {
-            return 0.0f;
+        if (total == 0) { // C
+            return 0.0f; // C
         }
 
         // devuelvo el porcentaje
-        return (pares * 100f) / total;
-    }
+        return (pares * 100f) / total; // C
+    } // L
 }

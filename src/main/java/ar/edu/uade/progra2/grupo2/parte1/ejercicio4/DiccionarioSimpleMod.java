@@ -27,96 +27,96 @@ public class DiccionarioSimpleMod implements DiccionarioSimpleModTDA {
 
     @Override
     public void inicializarDiccionario() {
-        origen = null;
-    }
+        origen = null; // C
+    } // C
 
     @Override
     public void agregar(int clave, int valor) {
-        Nodo aux = origen;
-        Nodo anterior = null;
-              // Estrategia: se recorre la lista buscando la clave.
+        Nodo aux = origen; // C
+        Nodo anterior = null; // C
+        // Estrategia: se recorre la lista buscando la clave.
         // Si no existe, se agrega al principio.
         // Si existe, se actualiza y se incrementa el contador.
         //
         // Costo: Lineal — puede recorrer toda la lista.
 
-        while (aux != null && aux.clave != clave) {
-            anterior = aux;
-            aux = aux.sig;
+        while (aux != null && aux.clave != clave) { // L
+            anterior = aux; // C
+            aux = aux.sig; // C
         }
 
-        if (aux == null) {
-            Nodo nuevo = new Nodo();
-            nuevo.clave = clave;
-            nuevo.valor = valor;
-            nuevo.modificaciones = 0;
-            nuevo.sig = origen;
-            origen = nuevo;
+        if (aux == null) { // C
+            Nodo nuevo = new Nodo(); // C
+            nuevo.clave = clave; // C
+            nuevo.valor = valor; // C
+            nuevo.modificaciones = 0; // C
+            nuevo.sig = origen; // C
+            origen = nuevo; // C
         } else {
-            if (aux.valor != valor) {
-                aux.valor = valor;
-                aux.modificaciones++;
+            if (aux.valor != valor) { // C
+                aux.valor = valor; // C
+                aux.modificaciones++; // C
             }
         }
-    }
+    } // L
 
     @Override
     public void eliminar(int clave) {
-        Nodo aux = origen;
-        Nodo anterior = null;
+        Nodo aux = origen; // C
+        Nodo anterior = null; // C
 
-     // Estrategia: recorrer la lista hasta encontrar la claveas yy "saltearla" en los punteros.
+        // Estrategia: recorrer la lista hasta encontrar la claveas yy "saltearla" en los punteros.
         //
         // Costo: Lineal 
-        while (aux != null && aux.clave != clave) {
-            anterior = aux;
-            aux = aux.sig;
+        while (aux != null && aux.clave != clave) { // L
+            anterior = aux; // C
+            aux = aux.sig; // C
         }
 
-        if (aux != null) {
-            if (anterior == null) {
-                origen = aux.sig;
+        if (aux != null) { // C
+            if (anterior == null) { // C
+                origen = aux.sig; // C
             } else {
-                anterior.sig = aux.sig;
+                anterior.sig = aux.sig; // C
             }
         }
-    }
+    } // L
 
     @Override
-    public int recuperar(int clave) { //colsto lineal
-        Nodo aux = origen;
-        while (aux != null && aux.clave != clave) {
-            aux = aux.sig;
+    public int recuperar(int clave) { //costo lineal
+        Nodo aux = origen; // C
+        while (aux != null && aux.clave != clave) { // L
+            aux = aux.sig; // C
         }
-        if (aux != null) {
-            return aux.valor;
+        if (aux != null) { // C
+            return aux.valor; // C
         } else {
-            throw new IllegalArgumentException("Clave inexistente: " + clave);
+            throw new IllegalArgumentException("Clave inexistente: " + clave); // C
         }
-    }
+    } // L
 
     @Override
     public int recuperarMod(int clave) { //costo tambien lineal
-        Nodo aux = origen;
-        while (aux != null && aux.clave != clave) {
-            aux = aux.sig;
+        Nodo aux = origen; // C
+        while (aux != null && aux.clave != clave) { // L
+            aux = aux.sig; // C
         }
         if (aux != null) {
-            return aux.modificaciones;
+            return aux.modificaciones; // C
         } else {
-            throw new IllegalArgumentException("Clave inexistente: " + clave);
+            throw new IllegalArgumentException("Clave inexistente: " + clave); // C
         }
-    }
+    } // L
 
     @Override
     public ConjuntoTDA claves() {
-        ConjuntoTDA c = new Conjunto();
-        c.inicializarConjunto();
-        Nodo aux = origen;
-        while (aux != null) {
-            c.agregar(aux.clave);
-            aux = aux.sig;
+        ConjuntoTDA c = new Conjunto(); // C
+        c.inicializarConjunto(); // C
+        Nodo aux = origen; // C
+        while (aux != null) { // L
+            c.agregar(aux.clave); // C
+            aux = aux.sig; // C
         }
-        return c;
-    }
+        return c; // C
+    } // L
 }

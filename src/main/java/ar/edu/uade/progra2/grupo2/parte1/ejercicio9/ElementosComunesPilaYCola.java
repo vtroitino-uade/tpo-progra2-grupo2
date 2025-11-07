@@ -11,61 +11,61 @@ public class ElementosComunesPilaYCola {
 
     public static ConjuntoTDA obtener(PilaTDA pila, ColaTDA cola) {
         // No crear nada aún
-        if (pila.pilaVacia() || cola.colaVacia()) {
-            ConjuntoTDA conjuntoVacio = new Conjunto();
-            conjuntoVacio.inicializarConjunto();
-            return conjuntoVacio;
+        if (pila.pilaVacia() || cola.colaVacia()) { // C 
+            ConjuntoTDA conjuntoVacio = new Conjunto(); // C
+            conjuntoVacio.inicializarConjunto(); // C
+            return conjuntoVacio; // C
         }
 
         // Recién acá creamos estructuras
-        ConjuntoTDA conjuntoResultado = new Conjunto();
-        conjuntoResultado.inicializarConjunto();
+        ConjuntoTDA conjuntoResultado = new Conjunto(); // C
+        conjuntoResultado.inicializarConjunto(); // C
 
-        PilaTDA auxPila = new Pila();
-        auxPila.inicializarPila();
+        PilaTDA auxPila = new Pila(); // C
+        auxPila.inicializarPila(); // C
 
-        ColaTDA auxCola = new Cola();
-        auxCola.inicializarCola();
+        ColaTDA auxCola = new Cola(); // C
+        auxCola.inicializarCola(); // C
 
-        ConjuntoTDA elementosCola = new Conjunto();
-        elementosCola.inicializarConjunto();
+        ConjuntoTDA elementosCola = new Conjunto(); // C
+        elementosCola.inicializarConjunto(); // C
 
         // Copiar elementos de la cola a un conjunto
-        while (!cola.colaVacia()) {
-            int elem = cola.primero();
-            cola.desacolar();
-            elementosCola.agregar(elem);
-            auxCola.acolar(elem);
+        while (!cola.colaVacia()) { // L
+            int elem = cola.primero(); // C
+            cola.desacolar(); // C
+            elementosCola.agregar(elem); // L
+            auxCola.acolar(elem); // L
         }
 
         // Restaurar la cola original
-        while (!auxCola.colaVacia()) {
-            int elem = auxCola.primero();
-            auxCola.desacolar();
-            cola.acolar(elem);
+        while (!auxCola.colaVacia()) { // L
+            int elem = auxCola.primero(); // C
+            auxCola.desacolar(); // C
+            cola.acolar(elem); // L
         }
 
         // Buscar coincidencias en la pila
-        while (!pila.pilaVacia()) {
-            int elem = pila.tope();
-            pila.desapilar();
+        while (!pila.pilaVacia()) { // L
+            int elem = pila.tope(); // C
+            pila.desapilar(); // C
 
-            if (elementosCola.pertenece(elem)) {
-                conjuntoResultado.agregar(elem);
+            if (elementosCola.pertenece(elem)) { // L
+                conjuntoResultado.agregar(elem); // L
             }
 
-            auxPila.apilar(elem);
+            auxPila.apilar(elem); // C
         }
 
         // Restaurar la pila original
-        while (!auxPila.pilaVacia()) {
-            int elem = auxPila.tope();
-            auxPila.desapilar();
-            pila.apilar(elem);
+        while (!auxPila.pilaVacia()) { // L
+            int elem = auxPila.tope(); // C
+            auxPila.desapilar(); // C
+            pila.apilar(elem); // C
         }
 
-        return conjuntoResultado;
-    }
+        return conjuntoResultado; // C
+    } // P
 }
 
 

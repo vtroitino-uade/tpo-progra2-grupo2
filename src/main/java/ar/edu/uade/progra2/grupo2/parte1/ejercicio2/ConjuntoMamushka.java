@@ -15,54 +15,54 @@ public class ConjuntoMamushka implements ConjuntoMamushkaTDA {
 
     @Override
     public void inicializar() {
-        c = null;
-    }
+        c = null; // C
+    } // C
 
     @Override
     public boolean estaVacio() {
-        return c == null;
-    }
+        return c == null; // C
+    } // C
 
     @Override
     public void guardar(int dato) {
-        c = new Nodo(dato, c);
-    }
+        c = new Nodo(dato, c); // C
+    } // C
 
     @Override
     public int elegir() {
-        if (c == null) throw new IllegalStateException("El conjunto está vacío");
-        return c.valor;
-    }
+        if (c == null) throw new IllegalStateException("El conjunto está vacío"); // C
+        return c.valor; // C
+    } // C
 
     @Override
     public int perteneceCant(int dato) {
-        Nodo aux = c;
-        int cont = 0;
-        while (aux != null) {
-            if (aux.valor == dato) cont++;
-            aux = aux.sig;
+        Nodo aux = c; // C
+        int cont = 0; // C
+        while (aux != null) { // L
+            if (aux.valor == dato) cont++; // C
+            aux = aux.sig; // C
         }
-        return cont;
-    }
+        return cont; // C
+    } // L
 
     @Override
     public void sacar(int dato) {
-        if (c == null) return; 
+        if (c == null) return;  // C
 
         
-        if (c.valor == dato) {
-            c = c.sig;
-            return;
+        if (c.valor == dato) { // C
+            c = c.sig; // C
+            return; // C
         }
 
-        Nodo aux = c;
-        while (aux.sig != null && aux.sig.valor != dato) {
-            aux = aux.sig;
+        Nodo aux = c; // C
+        while (aux.sig != null && aux.sig.valor != dato) { // L
+            aux = aux.sig; // C
         }
 
         
-        if (aux.sig != null) {
-            aux.sig = aux.sig.sig;
+        if (aux.sig != null) { // C
+            aux.sig = aux.sig.sig; // C
         }
-    }
+    } // L
 }

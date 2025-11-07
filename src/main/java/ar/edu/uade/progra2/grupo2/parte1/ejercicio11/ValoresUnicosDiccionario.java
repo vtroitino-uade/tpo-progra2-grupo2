@@ -9,30 +9,30 @@ import imple.Conjunto;
 public class ValoresUnicosDiccionario {
 
     public static ColaTDA obtener(DiccionarioMultipleTDA dic) {
-        ColaTDA cola = new Cola();
-        cola.inicializarCola();
+        ColaTDA cola = new Cola(); // C
+        cola.inicializarCola(); // C
 
-        ConjuntoTDA claves = dic.claves();
-        ConjuntoTDA valoresAgregados = new Conjunto();
-        valoresAgregados.inicializarConjunto();
+        ConjuntoTDA claves = dic.claves(); // L
+        ConjuntoTDA valoresAgregados = new Conjunto(); // C
+        valoresAgregados.inicializarConjunto(); // C
 
-        while (!claves.conjuntoVacio()) {
-            int clave = claves.elegir();
-            claves.sacar(clave);
+        while (!claves.conjuntoVacio()) { // L
+            int clave = claves.elegir(); // C
+            claves.sacar(clave); // L
 
-            ConjuntoTDA valores = dic.recuperar(clave);
+            ConjuntoTDA valores = dic.recuperar(clave); // L
 
-            while (!valores.conjuntoVacio()) {
-                int valor = valores.elegir();
-                valores.sacar(valor);
+            while (!valores.conjuntoVacio()) { // L
+                int valor = valores.elegir(); // C
+                valores.sacar(valor); // L
 
-                if (!valoresAgregados.pertenece(valor)) {
-                    cola.acolar(valor);
-                    valoresAgregados.agregar(valor);
+                if (!valoresAgregados.pertenece(valor)) { // L
+                    cola.acolar(valor); // L
+                    valoresAgregados.agregar(valor); // L
                 }
             }
         }
 
-        return cola;
-    }
+        return cola; // C
+    } // P
 }

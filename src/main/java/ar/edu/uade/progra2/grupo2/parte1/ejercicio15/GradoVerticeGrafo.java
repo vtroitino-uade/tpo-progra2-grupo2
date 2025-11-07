@@ -51,7 +51,7 @@ public class GradoVerticeGrafo {
             vertices.sacar(v); // L
         }
 
-        return aristasQueSalen - aristasQueLleagan;
+        return aristasQueSalen - aristasQueLleagan; // C
     } // P
 
 }

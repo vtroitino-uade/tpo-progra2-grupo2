@@ -9,36 +9,36 @@ import imple.Pila;
 public class FrecuenciaElementosPila {
 
     public static DiccionarioSimpleTDA obtener(PilaTDA pila) {
-        PilaTDA aux = new Pila();
-        aux.inicializarPila();
+        PilaTDA aux = new Pila(); // C
+        aux.inicializarPila(); // C
 
-        DiccionarioSimpleTDA dic = new DiccionarioSimple();
-        dic.inicializarDiccionario();
+        DiccionarioSimpleTDA dic = new DiccionarioSimple(); // C
+        dic.inicializarDiccionario(); // C
 
-        while (!pila.pilaVacia()) {
-            int elem = pila.tope();
-            pila.desapilar();
+        while (!pila.pilaVacia()) { // L
+            int elem = pila.tope(); // C
+            pila.desapilar(); // C
 
-            ConjuntoTDA claves = dic.claves();
-            boolean existe = claves.pertenece(elem);
+            ConjuntoTDA claves = dic.claves(); // L
+            boolean existe = claves.pertenece(elem); // L
 
-            if (existe) {
-                int valor = dic.recuperar(elem);
-                dic.eliminar(elem);
-                dic.agregar(elem, valor + 1);
+            if (existe) { // C
+                int valor = dic.recuperar(elem); // L
+                dic.eliminar(elem); // L
+                dic.agregar(elem, valor + 1); // L
             } else {
-                dic.agregar(elem, 1);
+                dic.agregar(elem, 1); // L
             }
 
-            aux.apilar(elem);
+            aux.apilar(elem); // C
         }
 
-        while (!aux.pilaVacia()) {
-            int elem = aux.tope();
-            aux.desapilar();
-            pila.apilar(elem);
+        while (!aux.pilaVacia()) { // L
+            int elem = aux.tope(); // C
+            aux.desapilar(); // C
+            pila.apilar(elem); // C
         }
 
-        return dic;
-    }
+        return dic; // C
+    } // P
 }
