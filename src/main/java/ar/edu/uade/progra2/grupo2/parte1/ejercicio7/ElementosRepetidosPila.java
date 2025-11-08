@@ -5,6 +5,13 @@ import imple.Conjunto;
 import tda.PilaTDA;
 import tda.ConjuntoTDA;
 
+/*Estrategia: Se utiliza una pila auxiliar para recorrer la pila original sin modificarla.
+Dos conjuntos ayudan a identificar los repetidos:
+vistos: guarda los elementos ya encontrados.
+repetidos: guarda los que aparecen más de una vez.
+Se pasan los datos a la pila auxiliar, luego se restauran en la pila original mientras se actualizan los conjuntos.
+Finalmente, se devuelve el conjunto con los elementos repetidos.*/
+
 public class ElementosRepetidosPila {
 
     public static ConjuntoTDA obtener(PilaTDA pila) {
