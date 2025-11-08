@@ -3,6 +3,11 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio6;
 import imple.Pila;
 import tda.PilaTDA;
 
+/*Estrategia: Se utiliza una pila auxiliar para recorrer la pila original sin modificarla.
+Mientras se desapilan los elementos, se cuentan el total y los pares.
+Luego, los elementos se vuelven a apilar desde la auxiliar para restaurar la pila original.
+Finalmente, se calcula y devuelve el porcentaje de elementos pares sobre el total.*/
+
 public class PorcentajeElementosParesPila {
 
     public static float calcular(PilaTDA pila) {
