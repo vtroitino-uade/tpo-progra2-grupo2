@@ -8,25 +8,23 @@ public class VerticesPuenteGrafo {
 
     /**
      * 
-     * <p><b>Estrategia:</b></p>
+     * Estrategia:
      * La estrategia utilizada es iterativa y selectiva:
      * Obtiene el conjunto de vértices que funcionan como "puentes" entre un vértice
      * de origen y uno de destino, es decir, aquellos vértices que poseen una arista
      * entrante desde el origen y una arista saliente hacia el destino.
      *
-     * <ul>
-     *   <li>Se inicializa un conjunto auxiliar vacío para almacenar los vértices puente.</li>
-     *   <li>Se obtiene el conjunto de vértices del grafo y se verifica que tanto el origen
-     *       como el destino pertenezcan a él.</li>
-     *   <li>Se eliminan origen y destino del conjunto auxiliar para no considerarlos
-     *       como posibles puentes.</li>
-     *   <li>Se recorre cada vértice restante y se verifica si existe una arista
-     *       desde el origen hacia ese vértice y otra desde el vértice hacia el destino.</li>
-     *   <li>Si ambas condiciones se cumplen, el vértice se agrega al conjunto de puentes.</li>
-     * </ul>
+     *- Se inicializa un conjunto auxiliar vacío para almacenar los vértices puente.
+     *- Se obtiene el conjunto de vértices del grafo y se verifica que tanto el origen
+     *  como el destino pertenezcan a él.
+     *- Se eliminan origen y destino del conjunto auxiliar para no considerarlos
+     *  como posibles puentes.
+     *- Se recorre cada vértice restante y se verifica si existe una arista
+     *  desde el origen hacia ese vértice y otra desde el vértice hacia el destino.
+     *- Si ambas condiciones se cumplen, el vértice se agrega al conjunto de puentes.
      *
-     * <p>La estructura original del grafo no se modifica en ningún momento; solo se
-     * trabaja sobre conjuntos auxiliares obtenidos a partir de él.</p>
+     * La estructura original del grafo no se modifica en ningún momento; solo se
+     * trabaja sobre conjuntos auxiliares obtenidos a partir de él.
      *
      *
      * @param grafo   grafo sobre el cual se buscan los vértices puente

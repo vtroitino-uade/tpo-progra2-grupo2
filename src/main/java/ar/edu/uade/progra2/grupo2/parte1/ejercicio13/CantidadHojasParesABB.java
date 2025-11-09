@@ -5,17 +5,13 @@ import tda.ABBTDA;
 public class CantidadHojasParesABB {
 
     /**
-     * <p><b>Estrategia:</b></p>
+     * Estrategia:
      * La estrategia utilizada en este método es recursiva y cuenta con dos casos base:
      * 
-     * <ul>
-     *  <li>El primero verifica si el árbol está vacío; en ese caso, devuelve 0.</li>
-     *  <li>
-     *    El segundo determina si el nodo actual es una hoja, comprobando que
-     *    tanto el subárbol izquierdo como el derecho estén vacíos. Si la raíz
-     *    del nodo es un número par, devuelve 1; de lo contrario, devuelve 0.
-     *  </li>
-     * </ul>
+     * - El primero verifica si el árbol está vacío; en ese caso, devuelve 0.
+     * - El segundo determina si el nodo actual es una hoja, comprobando que
+     *   tanto el subárbol izquierdo como el derecho estén vacíos. Si la raíz
+     *   del nodo es un número par, devuelve 1; de lo contrario, devuelve 0.
      * 
      * Por último, en el caso recursivo, se retorna la suma de las llamadas al método
      * sobre el subárbol izquierdo y el subárbol derecho, garantizando así que se
