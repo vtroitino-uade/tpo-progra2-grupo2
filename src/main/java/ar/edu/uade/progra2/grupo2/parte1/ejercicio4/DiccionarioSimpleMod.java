@@ -33,7 +33,6 @@ public class DiccionarioSimpleMod implements DiccionarioSimpleModTDA {
     @Override
     public void agregar(int clave, int valor) {
         Nodo aux = origen; // C
-        Nodo anterior = null; // C
         // Estrategia: se recorre la lista buscando la clave.
         // Si no existe, se agrega al principio.
         // Si existe, se actualiza y se incrementa el contador.
@@ -41,7 +40,6 @@ public class DiccionarioSimpleMod implements DiccionarioSimpleModTDA {
         // Costo: Lineal — puede recorrer toda la lista.
 
         while (aux != null && aux.clave != clave) { // L
-            anterior = aux; // C
             aux = aux.sig; // C
         }
 
@@ -52,11 +50,9 @@ public class DiccionarioSimpleMod implements DiccionarioSimpleModTDA {
             nuevo.modificaciones = 0; // C
             nuevo.sig = origen; // C
             origen = nuevo; // C
-        } else {
-            if (aux.valor != valor) { // C
-                aux.valor = valor; // C
-                aux.modificaciones++; // C
-            }
+        } else if (aux.valor != valor) { // C
+            aux.valor = valor; // C
+            aux.modificaciones++; // C
         }
     } // L
 

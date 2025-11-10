@@ -3,7 +3,7 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio3;
 import imple.Pila;
 import tda.PilaTDA;
 
-public class MultiPila implements MultipilaTDA {
+public class MultiPila implements MultiPilaTDA {
 
     private Nodo tope;
 
@@ -52,16 +52,15 @@ public class MultiPila implements MultipilaTDA {
     
     @Override
     public void desapilar(PilaTDA valores) {
-        if (pilaVacia() || valores.pilaVacia()) return; // C
+        if (pilaVacia()) return; // C
     
         PilaTDA copia = new Pila(); // C
         copia.inicializarPila(); // C
         PilaTDA aux = new Pila(); // C
         aux.inicializarPila(); // C
-
-        
         PilaTDA temp = new Pila(); // C
         temp.inicializarPila(); // C
+
         while (!valores.pilaVacia()) { // L
             temp.apilar(valores.tope()); // C
             valores.desapilar(); // C
@@ -86,7 +85,7 @@ public class MultiPila implements MultipilaTDA {
         PilaTDA auxComp = new Pila(); // C
         auxComp.inicializarPila(); // C
 
-        while (!copia.pilaVacia()) { // L
+        while (!copia.pilaVacia() && coincide) { // L
             if (cursor == null || cursor.valor != copia.tope()) { // C
                 coincide = false; // C
             } else {

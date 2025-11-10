@@ -2,7 +2,7 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio3;
 
 import tda.PilaTDA;
 
-public interface MultipilaTDA {
+public interface MultiPilaTDA {
     public void apilar (PilaTDA valores); 
 
     public void desapilar (PilaTDA valores); 

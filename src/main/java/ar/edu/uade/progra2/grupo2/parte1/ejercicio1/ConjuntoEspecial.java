@@ -1,6 +1,18 @@
 package ar.edu.uade.progra2.grupo2.parte1.ejercicio1;
 
-
+/**
+ * 
+ * Estrategia:
+ * Se utiliza una lista enlazada donde cada nodo contiene:
+ * - valor
+ * - sig (El siguiente nodo)
+ * 
+ * Algunos metodos devuelven un tipo de dato Respuesta que contiene:
+ * - error
+ * - rta
+ * 
+ * 
+ * */
 public class ConjuntoEspecial implements ConjuntoEspecialTDA {
     private class Nodo{
         int valor;
@@ -39,15 +51,13 @@ public class ConjuntoEspecial implements ConjuntoEspecialTDA {
 
     @Override
     public Respuesta elegir() {
-        if (c == null){ // C
+        if (conjuntoVacio()){ // C
             return new Respuesta(true, 0); // C
         }
         
         return new Respuesta(false, c.valor); // C
         
     } // C
-
-    
 
     @Override
     public boolean pertenece(int x) {

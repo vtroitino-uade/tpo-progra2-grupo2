@@ -105,10 +105,6 @@ public class DiccionarioSimplePrioridad implements DiccionarioSimpleTDA {
             aux.desacolar(); // C
         }
 
-        if (valor == -1) { // C
-            throw new IllegalArgumentException("Clave inexistente: " + clave); // C
-        }
-
         return valor; // C
     } // L
 

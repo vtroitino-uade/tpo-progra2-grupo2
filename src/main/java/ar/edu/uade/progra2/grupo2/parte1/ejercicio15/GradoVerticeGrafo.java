@@ -35,7 +35,7 @@ public class GradoVerticeGrafo {
         if (!vertices.pertenece(vertice)) return 0; // C
 
         int aristasQueSalen = 0; // C
-        int aristasQueLleagan = 0; // C
+        int aristasQueLlegan = 0; // C
         while (!vertices.conjuntoVacio()) { // L
             int v = vertices.elegir(); // C
 
@@ -43,13 +43,13 @@ public class GradoVerticeGrafo {
                 aristasQueSalen++; // C
             }
             if (grafo.existeArista(v, vertice)) { // C
-                aristasQueLleagan++; // C
+                aristasQueLlegan++; // C
             }
         
             vertices.sacar(v); // L
         }
 
-        return aristasQueSalen - aristasQueLleagan; // C
+        return aristasQueSalen - aristasQueLlegan; // C
     } // P
 
 }
