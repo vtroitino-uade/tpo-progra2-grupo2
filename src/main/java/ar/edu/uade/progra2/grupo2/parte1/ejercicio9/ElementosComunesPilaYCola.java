@@ -6,7 +6,22 @@ import tda.ConjuntoTDA;
 import imple.Pila;
 import imple.Cola;
 import imple.Conjunto;
-
+/*
+ * Estrategia utilizada: USO DE CONJUNTO PARA COMPARACIÓN Y ESTRUCTURAS AUXILIARES
+ * PARA NO PERDER LOS DATOS.
+ *
+ * Se busca obtener un conjunto con los elementos que aparecen tanto en la pila
+ * como en la cola, sin modificar las estructuras originales.
+ *
+ * Si alguna de las estructuras está vacía, no puede haber elementos comunes --> devolver conjunto vacío.
+ * Se vuelca el contenido de la cola a un conjunto.
+ * Durante este proceso, se usa una cola auxiliar para restaurar su contenido.
+ * Luego se recorre la pila, verificando si cada elemento pertenece al conjunto
+ * formado con los datos de la cola. Si pertenece, se agrega al resultado.
+ * También se utiliza una pila auxiliar para restaurar la pila original.
+ *
+ * Finalmente se devuelve el conjunto con los elementos comunes.
+ */
 public class ElementosComunesPilaYCola {
 
     public static ConjuntoTDA obtener(PilaTDA pila, ColaTDA cola) {
