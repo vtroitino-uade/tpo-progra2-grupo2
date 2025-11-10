@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio3.implementacion.MultiPila;
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio3.interfaz.MultiPilaTDA;
 import imple.Pila;
 import tda.PilaTDA;
 

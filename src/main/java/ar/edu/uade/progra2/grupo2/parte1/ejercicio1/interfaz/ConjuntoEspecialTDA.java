@@ -1,4 +1,4 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio1;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio1.interfaz;
 
 public interface ConjuntoEspecialTDA { 
 

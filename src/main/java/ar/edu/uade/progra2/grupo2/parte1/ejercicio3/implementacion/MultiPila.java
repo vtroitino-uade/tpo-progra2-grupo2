@@ -1,5 +1,6 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio3;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio3.implementacion;
 
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio3.interfaz.MultiPilaTDA;
 import imple.Pila;
 import tda.PilaTDA;
 

@@ -1,4 +1,6 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio1;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio1.implementacion;
+
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio1.interfaz.ConjuntoEspecialTDA;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio3;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio3.interfaz;
 
 import tda.PilaTDA;
 

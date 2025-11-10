@@ -3,6 +3,9 @@ package ar.edu.uade.progra2.grupo2.parte1.ejercicio2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio2.implementacion.ConjuntoMamushka;
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio2.interfaz.ConjuntoMamushkaTDA;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ConjuntoMamushkaTest {

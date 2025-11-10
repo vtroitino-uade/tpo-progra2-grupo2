@@ -1,4 +1,4 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio4;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio4.interfaz;
 import tda.ConjuntoTDA;
 
 public interface DiccionarioSimpleModTDA {

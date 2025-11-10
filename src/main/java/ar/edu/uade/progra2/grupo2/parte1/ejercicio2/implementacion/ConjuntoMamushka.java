@@ -1,4 +1,6 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio2;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio2.implementacion;
+
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio2.interfaz.ConjuntoMamushkaTDA;
 
 public class ConjuntoMamushka implements ConjuntoMamushkaTDA {
     private class Nodo {

@@ -1,5 +1,6 @@
-package ar.edu.uade.progra2.grupo2.parte1.ejercicio4;
+package ar.edu.uade.progra2.grupo2.parte1.ejercicio4.implementacion;
 
+import ar.edu.uade.progra2.grupo2.parte1.ejercicio4.interfaz.DiccionarioSimpleModTDA;
 import imple.Conjunto;
 import tda.ConjuntoTDA;
 /**
