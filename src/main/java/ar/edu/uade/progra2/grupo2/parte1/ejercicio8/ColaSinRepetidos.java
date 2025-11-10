@@ -4,7 +4,20 @@ import tda.ColaTDA;
 import tda.ConjuntoTDA;
 import imple.Cola;
 import imple.Conjunto;
-
+/*
+ * Estrategia utilizada: RECORRIDO ITERATIVO CON CONJUNTO Y COLA AUXILIAR.
+ *
+ * El objetivo es devolver una nueva cola sin elementos repetidos, conservando
+ * el orden en que aparecen por primera vez en la cola original.
+ *
+ *Se recorre la cola original elemento por elemento.
+ *Se usa un conjunto para recordar qué valores ya fueron agregados.
+ *Si el elemento aún no está en el conjunto, se incorpora a la cola nueva.
+ *En todos los casos, el elemento se guarda temporalmente en una cola auxiliar,
+ *para luego restaurar la cola original.
+ *
+ *Finalmente se restaura el contenido de la cola original y se devuelve la cola nueva.
+ */
 public class ColaSinRepetidos {
     
 	public static ColaTDA obtener(ColaTDA colaOriginal) {
